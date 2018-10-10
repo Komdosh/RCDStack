@@ -8,14 +8,32 @@
 ThreadSafeStack::ThreadSafeStack(int stackSize):Stack(stackSize) {
 }
 
-void ThreadSafeStack::push(int num) {
+void ThreadSafeStack::push(int value) {
+    mutex.lock();
 
+    stack[position] = value;
+    position += 1;
+
+    mutex.unlock();
 };
 
 int ThreadSafeStack::pop() {
-    return 0;
+    int value;
+    mutex.lock();
+
+    value = stack[position];
+    position -= 1;
+
+    mutex.unlock();
+    return value;
 };
 
 int ThreadSafeStack::peek() {
-    return 0;
+    int value;
+    mutex.lock();
+
+    value = stack[position-1];
+
+    mutex.unlock();
+    return value;
 };

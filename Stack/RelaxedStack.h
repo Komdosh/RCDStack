@@ -10,7 +10,7 @@
 class RelaxedStack: public Stack {
 public:
     explicit RelaxedStack(int stackSize);
-    void push(int num) override;
+    void push(int value) override;
     int pop() override;
     int peek() override;
 };

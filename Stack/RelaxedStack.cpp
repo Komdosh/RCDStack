@@ -8,7 +8,7 @@
 RelaxedStack::RelaxedStack(int stackSize): Stack(stackSize) {
 }
 
-void RelaxedStack::push(int num) {
+void RelaxedStack::push(int value) {
 
 };
 

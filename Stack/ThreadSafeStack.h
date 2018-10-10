@@ -6,11 +6,14 @@
 #define RCDSTACK_THREADSAFESTACK_H
 
 #include "Stack.h"
+#include <mutex>
 
 class ThreadSafeStack: public Stack {
+    std::mutex mutex;
+    volatile int position;
 public:
     explicit ThreadSafeStack(int stackSize);
-    void push(int num) override;
+    void push(int value) override;
     int pop() override;
     int peek() override;
 };
