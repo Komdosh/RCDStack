@@ -13,6 +13,7 @@ public:
     void push(int value) override;
     int pop() override;
     int peek() override;
+    ~RelaxedStack() override;
 };
 
 

@@ -5,8 +5,10 @@
 #include <iostream>
 #include "RelaxedStack.h"
 
-RelaxedStack::RelaxedStack(int stackSize): Stack(stackSize) {
+RelaxedStack::RelaxedStack(int stackSize) {
 }
+
+RelaxedStack::~RelaxedStack() = default;
 
 void RelaxedStack::push(int value) {
 

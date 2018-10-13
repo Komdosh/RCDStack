@@ -5,7 +5,14 @@
 #include <iostream>
 #include "ThreadSafeStack.h"
 
-ThreadSafeStack::ThreadSafeStack(int stackSize):Stack(stackSize) {
+using namespace std;
+
+ThreadSafeStack::ThreadSafeStack(int stackSize) {
+    stack = new int[stackSize];
+}
+
+ThreadSafeStack::~ThreadSafeStack() {
+    delete[] stack;
 }
 
 void ThreadSafeStack::push(int value) {

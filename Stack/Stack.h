@@ -7,16 +7,11 @@
 
 
 class Stack {
-protected:
-    int* stack;
-
-    explicit Stack(int stackSize);
-
 public:
     virtual void push(int value) = 0;
     virtual int pop() = 0;
     virtual int peek() = 0;
-    virtual ~Stack();
+    virtual ~Stack() = 0;
 };
 
 

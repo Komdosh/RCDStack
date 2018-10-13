@@ -10,12 +10,14 @@
 
 class ThreadSafeStack: public Stack {
     std::mutex mutex;
+    int* stack;
     volatile int position;
 public:
     explicit ThreadSafeStack(int stackSize);
     void push(int value) override;
     int pop() override;
     int peek() override;
+    ~ThreadSafeStack() override;
 };
 
 
