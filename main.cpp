@@ -3,6 +3,8 @@
 #include "Stack/Stack.h"
 
 #include "cpu_helper.cpp"
+#include "Stack/ThreadSafeStack.h"
+#include "Stack/RelaxedStack.h"
 
 #define NUM_ELEMENT 500000
 #define CORES 6
