@@ -5,8 +5,6 @@
 #include <iostream>
 #include "ThreadSafeStack.h"
 
-using namespace std;
-
 ThreadSafeStack::ThreadSafeStack(int stackSize) {
     stack = new int[stackSize];
 }
@@ -31,7 +29,6 @@ int ThreadSafeStack::pop() {
     position -= 1;
     value = stack[position];
 
-
     mutex.unlock();
     return value;
 };
@@ -44,4 +41,4 @@ int ThreadSafeStack::peek() {
 
     mutex.unlock();
     return value;
-};
+}

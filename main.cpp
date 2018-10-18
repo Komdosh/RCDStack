@@ -1,12 +1,7 @@
 #include <iostream>
 
 #include "Stack/Stack.h"
-#include "Stack/ThreadSafeStack.h"
-#include "Stack/RelaxedStack.h"
 
-#include <x86intrin.h>
-#include <zconf.h>
-#include "mpi.h"
 #include "cpu_helper.cpp"
 
 #define NUM_ELEMENT 500000
@@ -33,8 +28,8 @@ void *RunExperiment(void *threadarg) {
     cout<<"ThreadSafeStack Peek: "<<threadSafeStack->peek()<<endl;
     cout<<"ThreadSafeStack Pop: "<<threadSafeStack->pop()<<endl;
 
-//    cout<<"RelaxedStack Peek: "<<relaxedStack->peek()<<endl;
-//    cout<<"RelaxedStack Pop: "<<relaxedStack->pop()<<endl;
+    cout << "RelaxedStack Peek: " << relaxedStack->peek() << endl;
+    cout << "RelaxedStack Pop: " << relaxedStack->pop() << endl;
 
     pthread_exit(nullptr);
 }
