@@ -8,8 +8,11 @@
 #include "Stack.h"
 
 class RelaxedStack: public Stack {
+    int* positions;
+    int** stacks;
+    int stacksNum;
 public:
-    explicit RelaxedStack(int stackSize);
+    explicit RelaxedStack(int stackSize, int stacksNum = 8);
     void push(int value) override;
     int pop() override;
     int peek() override;

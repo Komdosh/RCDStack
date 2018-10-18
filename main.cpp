@@ -41,8 +41,6 @@ void *RunExperiment(void *threadarg) {
 
 
 int main() {
-
-
     cpu_set_t cpuset[CORES];
     pthread_t threads[NUM_OF_THREADS];
     for (int i = 0; i < CORES; i++) {
@@ -51,7 +49,7 @@ int main() {
     }
 
     threadSafeStack = new ThreadSafeStack(NUM_ELEMENT*NUM_OF_THREADS);
-    relaxedStack = new RelaxedStack(NUM_ELEMENT*NUM_OF_THREADS);
+    relaxedStack = new RelaxedStack(NUM_ELEMENT*NUM_OF_THREADS, NUM_OF_THREADS*2);
 
     struct threadData td[NUM_OF_THREADS];
 

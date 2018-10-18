@@ -28,8 +28,9 @@ int ThreadSafeStack::pop() {
     int value;
     mutex.lock();
 
-    value = stack[position];
     position -= 1;
+    value = stack[position];
+
 
     mutex.unlock();
     return value;
