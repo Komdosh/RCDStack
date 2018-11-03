@@ -23,22 +23,30 @@ void ThreadSafeStack::push(int value) {
 };
 
 int ThreadSafeStack::pop() {
-    int value;
+    int value = -1;
     mutex.lock();
 
-    position -= 1;
-    value = stack[position];
+    if (position > 0) {
+        position -= 1;
+        value = stack[position];
+    }
 
     mutex.unlock();
     return value;
 };
 
 int ThreadSafeStack::peek() {
-    int value;
+    int value = -1;
     mutex.lock();
 
-    value = stack[position-1];
+    if (position > 0) {
+        value = stack[position - 1];
+    }
 
     mutex.unlock();
     return value;
 }
+
+long ThreadSafeStack::size() {
+    return position - 1;
+};

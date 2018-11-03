@@ -34,23 +34,27 @@ void RelaxedStack::push(int value) {
 };
 
 int RelaxedStack::pop() {
-    int value;
+    int value = -1;
     int id = getStackId();
     int position = positions[id] - 1;
 
-    value = stacks[id][position];
-    positions[id] = position;
+    if (position >= 0) {
+        value = stacks[id][position];
+        positions[id] = position;
+    }
 
     locks[id].unlock();
     return value;
 };
 
 int RelaxedStack::peek() {
-    int value;
+    int value = -1;
     int id = getStackId();
     int position = positions[id] - 1;
 
-    value = stacks[id][position];
+    if (position >= 0) {
+        value = stacks[id][position];
+    }
 
     locks[id].unlock();
     return value;
@@ -63,6 +67,15 @@ int RelaxedStack::getStackId() {
     } while (!locks[id].try_lock());
     return id;
 }
+
+long RelaxedStack::size() {
+    long numOfElements = 0;
+    for (int i = 0; i < this->stacksNum; ++i) {
+        numOfElements += positions[i] - 1;
+    }
+    return numOfElements;
+};
+
 
 int RelaxedStack::getRandomStackNum() {
     return rand_r(this->seed) % stacksNum;
