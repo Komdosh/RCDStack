@@ -190,7 +190,7 @@ int main(int argc, char *argv[]) {
     cout << "[INFO START] Max threads " << maxThreads << endl;
     cout << "[INFO START] Max stacks per thread " << maxOfStacksPerThread << endl;
     cout << "[COMPLETE EXPERIMENT]" << endl;
-    cout << "Mode Threads Stacks Relaxed Traditional" << endl << endl;
+    cout << "Mode Threads Stacks Traditional Relaxed" << endl << endl;
 
     for (int mode = PUSH; mode != LAST; ++mode) {
         for (int numOfThreads = 1; numOfThreads < maxThreads; numOfThreads += STEP) {
