@@ -35,9 +35,9 @@ Stack *relaxedStack;
 long *throughputTraditional;
 long *throughputRelaxed;
 
-void saveInfo(structureType st, int threadId, uint64_t start, long numOfElement) {
+void saveInfo(structureType st, int threadId, uint64_t start) {
     double secs = (__rdtsc() - start) / CPU_FRQ;
-    long throughput = static_cast<long>(numOfElement / secs);
+    long throughput = static_cast<long>(ACTION_ELEMENT_NUM / secs);
     if (st == TRADITIONAL) {
         throughputTraditional[threadId] = throughput;
     } else if (st == RELAXED) {
@@ -62,36 +62,36 @@ void *RunExperiment(void *threadarg) {
             for (int i = 0; i < INSERT_ELEMENT_NUM; ++i) {
                 threadSafeStack->push(i);
             }
-            saveInfo(TRADITIONAL, threadData->threadId, start, threadSafeStack->size());
+            saveInfo(TRADITIONAL, threadData->threadId, start);
             start = __rdtsc();
             for (int i = 0; i < INSERT_ELEMENT_NUM; ++i) {
                 relaxedStack->push(i);
             }
-            saveInfo(RELAXED, threadData->threadId, start, relaxedStack->size());
+            saveInfo(RELAXED, threadData->threadId, start);
             break;
         case POP:
             start = __rdtsc();
             for (int i = 0; i < ACTION_ELEMENT_NUM; ++i) {
                 relaxedStack->pop();
             }
-            saveInfo(TRADITIONAL, threadData->threadId, start, threadSafeStack->size());
+            saveInfo(TRADITIONAL, threadData->threadId, start);
             start = __rdtsc();
             for (int i = 0; i < ACTION_ELEMENT_NUM; ++i) {
                 relaxedStack->pop();
             }
-            saveInfo(RELAXED, threadData->threadId, start, relaxedStack->size());
+            saveInfo(RELAXED, threadData->threadId, start);
             break;
         case PEEK:
             start = __rdtsc();
             for (int i = 0; i < ACTION_ELEMENT_NUM; ++i) {
                 threadSafeStack->peek();
             }
-            saveInfo(TRADITIONAL, threadData->threadId, start, threadSafeStack->size());
+            saveInfo(TRADITIONAL, threadData->threadId, start);
             start = __rdtsc();
             for (int i = 0; i < ACTION_ELEMENT_NUM; ++i) {
                 relaxedStack->peek();
             }
-            saveInfo(RELAXED, threadData->threadId, start, relaxedStack->size());
+            saveInfo(RELAXED, threadData->threadId, start);
             break;
         case RANDOM:
             start = __rdtsc();
@@ -110,7 +110,7 @@ void *RunExperiment(void *threadarg) {
 
                 }
             }
-            saveInfo(TRADITIONAL, threadData->threadId, start, threadSafeStack->size());
+            saveInfo(TRADITIONAL, threadData->threadId, start);
             seed = new unsigned int[1]{0};
             start = __rdtsc();
             for (int i = 0; i < ACTION_ELEMENT_NUM; ++i) {
@@ -127,7 +127,7 @@ void *RunExperiment(void *threadarg) {
 
                 }
             }
-            saveInfo(RELAXED, threadData->threadId, start, relaxedStack->size());
+            saveInfo(RELAXED, threadData->threadId, start);
             break;
     }
 
